@@ -1,0 +1,34 @@
+#map {
+  height: 100%;
+}
+
+#map-container{
+	width: 600px;
+	height: 600px;
+}
+      
+#input-container{
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#swapHotspot-container{
+	margin: 5px;
+	width: 400px;
+	height: 500px;	
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+#swapSongs{
+	background-image: url('../img/swap_songs.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	
+	width: 400px;
+	height: 130px;
+}
