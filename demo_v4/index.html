@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Geolocation Testv3</title>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="css/css-main.css">
+</head>
+<body>
+	<div id="wrapper">
+		
+		<div id="input-container">
+			<input id="address" type="text">
+			<button type="button" onclick="makeHotspot();">Enter</button>
+		</div>
+		
+		<div id="map-container">
+			<div id="map"></div>
+		</div>
+	</div>
+	<script src="js-main.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js? &callback=initMap">
+    </script>
+  </body>
+</html>
