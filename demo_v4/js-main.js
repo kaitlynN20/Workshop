@@ -97,18 +97,28 @@ function makeHotspot() {
 			console.log(results[0].geometry.location.lat());
 			
 			
-			userPos(function(id){
-				console.log(id.coords.latitude);
-				
-				if((id.coords.latitude = results[0].geometry.location.lat()) && (id.coords.longitude = results[0].geometry.location.lng())) {
-					console.log('HELLO');	
-				}else{
-					console.log('GOODBYE');
-					return
-				}
-			})
-			
-			
+			userPos(function(id){       
+                var lat = id.coords.latitude;
+                var lng = id.coords.longitude;
+                var temp = .001;
+
+                
+                var newLat = rangeChecker(lat, results[0].geometry.location.lat(), temp );
+                console.log(newLat);
+                
+                var newLng = rangeChecker(lng,results[0].geometry.location.lng(), temp );
+                console.log(newLng);
+                
+                //rangeChecker==bool
+                //
+                
+                if(newLat == true && newLng == true){
+                    console.log("HELLO");
+                    
+                } else{
+                    console.log("GOODBYE");
+                }
+            });
 			
 		} else {
         	alert('Geocode was not successful for the following reason: ' + status);
@@ -131,5 +141,10 @@ function userPos(callback) {
 	return callback(position,tempPos)
 });
 
+}
+
+//testing: if user is in range or not
+function rangeChecker(op, target, range){
+    return op < target + range && op > target - range;
 }
 			 
