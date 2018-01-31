@@ -5,8 +5,9 @@
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
 	<link rel="stylesheet" href="css/css-main.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
 </head>
-<body>
+<body ng-app="myApp">
 	<div id="wrapper">
 		
 		<div id="input-container">
@@ -14,13 +15,15 @@
 			<button type="button" onclick="makeHotspot();">Enter</button>
 		</div>
 		
-		<div id="map-container">
+		<div id="map-container" ng-controller="MainController">
 			<div id="map"></div>
 		</div>
 	</div>
+	<script src="app.js"></script>
 	<script src="js-main.js"></script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js? &callback=initMap">
-    </script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMTAmp7DTDCyx6gYt5vilMAdjudsL7z0I&callback=initMap">
+	</script>
+	<script src="MainController.js"></script>
   </body>
 </html>
