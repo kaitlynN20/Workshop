@@ -117,10 +117,11 @@ function makeHotspot() {
 			var marker = new google.maps.Marker({
             	map: map,
 				animation: google.maps.Animation.DROP,
-            	position: results[0].geometry.location			
+				position: results[0].geometry.location,
+				icon: {url:'img/hotspot.png', scaledSize: new google.maps.Size(47, 50)},			
 			});
 			 
-			marker.setIcon('img/hotspot.png');
+			// marker.setIcon('img/hotspot.png');
 			
 			marker.addListener('click', function(){
 				hotspotWindow.open(map, marker);
