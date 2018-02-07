@@ -6,6 +6,18 @@ var hotspotWindow; //holds infowindow for hotspot
 
 var srcImage = 'overlay_img.jpg';
 var i;
+
+	//DATA OF HOTSPOT LOCATIONS
+	var locations = [
+		['FILLMORE', 39.9658, -75.1347, 4],
+		['WORLD CAFE LIVE', 39.9521, -75.1851, 5],
+		['ELECTRIC FACTORY', 39.9594, -75.1496, 3],
+		['TLA', 39.9413, -75.1487, 2],
+		['UNION TRANSFER', 39.9614, -75.1553, 1],
+		['URBN ANNEX', 39.957119, -75.192836],
+		['URBN CENTER', 39.956492, -75.19283, 1]
+	];
+
 //creates map
 //is called when page loads
 function initMap() {
@@ -24,14 +36,6 @@ function initMap() {
             	lat: position.coords.latitude,
              	lng: position.coords.longitude
 		};
-	//DATA OF HOTSPOT LOCATIONS
-			var locations = [
-				['FILLMORE', 39.9658, -75.1347, 4],
-				['WORLD CAFE LIVE', 39.9521, -75.1851, 5],
-				['ELECTRIC FACTORY', 39.9594, -75.1496, 3],
-				['TLA', 39.9413, -75.1487, 2],
-				['UNION TRANSFER', 39.9614, -75.1553, 1]
-			];
 		
 	//CREATES USER MARKER
 		  personMarker = new google.maps.Marker({
@@ -51,7 +55,7 @@ function initMap() {
 				map: map
 				});
 		  
-		  // Add circle overlay and bind to marker
+	// ADD CIRCLE OVERLAY and bind to marker
 		  var circle = new google.maps.Circle({
 			map: map,
 			radius: 50,    // 10 miles in metres
@@ -71,9 +75,38 @@ function initMap() {
         } else {
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
-        }
-	
-      }
+		}
+		
+		userPos(function(id){       
+                var lat = id.coords.latitude;
+                var lng = id.coords.longitude;
+				var temp = .0006;
+				
+
+				for (i = 0; i < locations.length; i++) {  
+					var newLat = rangeChecker(lat, locations[i][1], temp );
+					// console.log(newLat);
+					
+					var newLng = rangeChecker(lng,locations[i][2], temp );
+					// console.log(newLng);
+
+					if(newLat == true && newLng == true){
+						console.log(locations[i][0] +' '+  "HELLO");
+						
+						
+					} else{
+						console.log(locations[i][0]+' '+ "GOODBYE");
+					}
+					
+				};
+					
+
+            
+                
+                //rangeChecker==bool
+                //
+	  });
+	}
 	//handles error if geolocation fails
    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
@@ -90,64 +123,74 @@ function initMap() {
 //takes user inputed adress and converts it
 //drops a marker down at that point
 
-function makeHotspot() {
-	console.log('makeHotspot called');
-	var position = "";
+// function makeHotspot() {
+// 	console.log('makeHotspot called');
+// 	var position = "";
 	
-	userAddress = document.getElementById('address').value;
-	console.log(userAddress);
+// 	userAddress = document.getElementById('address').value;
+// 	console.log(userAddress);
 	
-	geocoder = new google.maps.Geocoder();
+// 	geocoder = new google.maps.Geocoder();
 	
-	geocoder.geocode( { 'address': userAddress}, 
-	function(results, status) {
+// 	geocoder.geocode( { 'address': userAddress}, 
+// 	function(results, status) {
       
-		if (status == 'OK') {
+// 		if (status == 'OK') {
         
-		map.setCenter(results[0].geometry.location);
+// 		map.setCenter(results[0].geometry.location);
 	
-		var contentString = '<div id = "swapHotspot-container">'+'<div id="userProfile">'+'</div>'+'<div id="userBio">'+'</div>'+'<div id="swapSongs">'+'</div>'+'<div id="stickers">'+'</div>'+'</div>';
+// 		var contentString = '<div id = "swapHotspot-container">'+'<div id="userProfile">'+'</div>'+'<div id="userBio">'+'</div>'+'<div id="swapSongs">'+'</div>'+'<div id="stickers">'+'</div>'+'</div>';
 			
 			
-		hotspotWindow = new google.maps.InfoWindow({
-			content: contentString
-		});
+// 		hotspotWindow = new google.maps.InfoWindow({
+// 			content: contentString
+// 		});
 
-			//puts the marker down at address
-			var marker = new google.maps.Marker({
-            	map: map,
-				animation: google.maps.Animation.DROP,
-				position: results[0].geometry.location,
-				icon: {url:'img/hotspot.png', scaledSize: new google.maps.Size(47, 50)},			
-			});
+// 			//puts the marker down at address
+// 			var marker = new google.maps.Marker({
+//             	map: map,
+// 				animation: google.maps.Animation.DROP,
+// 				position: results[0].geometry.location,
+// 				icon: {url:'img/hotspot.png', scaledSize: new google.maps.Size(47, 50)},			
+// 			});
 			 
-			// marker.setIcon('img/hotspot.png');
+// 			// marker.setIcon('img/hotspot.png');
 			
-			marker.addListener('click', function(){
-				hotspotWindow.open(map, marker);
-			});
+// 			marker.addListener('click', function(){
+// 				hotspotWindow.open(map, marker);
+// 			});
 			
-			console.log(results[0].geometry.location.lat());
-			
-			
-			userPos(function(id){
-				console.log(id.coords.latitude);
-				
-				if((id.coords.latitude = results[0].geometry.location.lat()) && (id.coords.longitude = results[0].geometry.location.lng())) {
-					console.log('HELLO');	
-				}else{
-					console.log('GOODBYE');
-					return
-				}
-			})
+// 			console.log(results[0].geometry.location.lat());
 			
 			
+// 			userPos(function(id){       
+//                 var lat = id.coords.latitude;
+//                 var lng = id.coords.longitude;
+//                 var temp = .0008;
+
+                
+//                 var newLat = rangeChecker(lat, results[0].geometry.location.lat(), temp );
+//                 console.log(newLat);
+                
+//                 var newLng = rangeChecker(lng,results[0].geometry.location.lng(), temp );
+//                 console.log(newLng);
+                
+//                 //rangeChecker==bool
+//                 //
+                
+//                 if(newLat == true && newLng == true){
+//                     console.log("HELLO");
+                    
+//                 } else{
+//                     console.log("GOODBYE");
+//                 }
+//             });
 			
-		} else {
-        	alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
-}
+// 		} else {
+//         	alert('Geocode was not successful for the following reason: ' + status);
+//       }
+//     });
+// }
 
 
 //end of entering hotspot
@@ -164,5 +207,11 @@ function userPos(callback) {
 	return callback(position,tempPos)
 });
 
+}
+
+
+//testing: if user is in range or not
+function rangeChecker(op, target, range){
+    return op < target + range && op > target - range;
 }
 			 

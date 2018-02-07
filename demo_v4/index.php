@@ -5,8 +5,12 @@
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
 	<link rel="stylesheet" href="css/css-main.css">
+	<link rel="stylesheet" href="css/css-nav.css">
 	
 </head>
+<?php 
+include 'nav.php';
+?>
 <body ng-app="myApp">
 		
 		
@@ -80,7 +84,7 @@
 		</div> -->
 		
 		<div id="map-container" ng-controller="MainController">
-			<div id="map"></div>
+			<div id="map" style="position: inherit;" ></div>
 		</div>
 	</div>
 	
@@ -90,6 +94,7 @@
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	
-	<script src="modal.js"></script>
+    <script src="modal.js"></script>
+    <script src="js-nav.js"></script>
   </body>
 </html>
