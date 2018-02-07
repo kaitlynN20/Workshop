@@ -12,7 +12,7 @@ function initMap() {
 	//INITIALIZE MAP
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 39.952583, lng: -75.165222},
-          zoom: 10
+          zoom: 12
         });
 	    infoWindow = new google.maps.InfoWindow;
 	//FIND USERS LOCATION	
