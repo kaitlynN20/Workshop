@@ -5,7 +5,8 @@
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
 	<link rel="stylesheet" href="css/css-main.css">
-	<link rel="stylesheet" href="css/css-nav.css">
+    <link rel="stylesheet" href="css/css-nav.css">
+    <link href="https://fonts.googleapis.com/css?family=Averia+Sans+Libre" rel="stylesheet">
 	
 </head>
 <?php 

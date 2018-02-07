@@ -8,6 +8,7 @@
     transition: all 1s;
     z-index: 100;
     position: absolute;
+    font-family: 'Averia Sans Libre', cursive;
 }
 
 .wave {
@@ -67,7 +68,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fe5893', end
   z-index: 500;
   /* position: absolute; */
   margin-top: -580px;
-  margin-left: 35px;
+  margin-left: 50px;
   display: flex;
   width: 100%;
   max-width: 500px;
@@ -104,14 +105,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fe5893', end
   width: 100%;
   z-index: 100;
   list-style-type: none;
-  /* padding-left: 0; */
+  padding-left: 0;
 }
 
 .mobile ul li { 
-  width: 60%; 
+  width: 68%; 
   float: left; 
   text-align: center; 
-  margin: 10px;
+  margin: 12px;
 }
 
 .mobile a { 
@@ -120,6 +121,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fe5893', end
   display: block; 
   border-bottom: 1px solid rgba(255, 255, 255, 0.25); 
   text-decoration: none; 
+  line-height: 13px;
+  font-size: 20px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25); 
   white-space: nowrap; 
   text-overflow: ellipsis; 
