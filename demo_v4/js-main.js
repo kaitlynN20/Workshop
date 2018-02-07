@@ -100,7 +100,7 @@ function makeHotspot() {
 			userPos(function(id){       
                 var lat = id.coords.latitude;
                 var lng = id.coords.longitude;
-                var temp = .001;
+                var temp = .0008;
 
                 
                 var newLat = rangeChecker(lat, results[0].geometry.location.lat(), temp );
