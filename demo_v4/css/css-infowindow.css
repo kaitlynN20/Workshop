@@ -1,6 +1,4 @@
 .gm-style-iw{
-    height: 50vh;
-    width: 320px !important;
+    width: 100% !important;
     z-index: 1000;
-    /* color: #aed9df; */
 }

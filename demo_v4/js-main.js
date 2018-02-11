@@ -200,20 +200,26 @@ function initMap() {
 			for (i = 0; i < locations.length; i++) {  
 				marker = new google.maps.Marker({
 				position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-				icon: {url:'img/hotspot.png', scaledSize: new google.maps.Size(40, 52)},
+				icon: {url:'img/hotspot.png', 
+				scaledSize: new google.maps.Size(40, 52)},
 				map: map
 				});
 	
 	//VENUE INFORMATION - ARTIST NAME 			
 			var add = locations[i][3]
-			var content = "Artist: " + add     
+			var content = "Artist: " + add    
+			var prev_infowindow = false; 
 				
 			var infowindow = new google.maps.InfoWindow()
 
 			google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
-				return function() {
-				   infowindow.setContent(content);
+				return function() { 
+				   //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+				   infowindow.setContent("<div style = 'width:100vw; min-height:70vh; background-color: rgba(255,255,255, .8);'>" + content + "</div>");
 				   infowindow.open(map,marker);
+				   
+				  
+					
 				};
 			})(marker,content,infowindow)); 
 		  
