@@ -6,6 +6,7 @@
     <meta charset="utf-8">
 	<link rel="stylesheet" href="css/css-main.css">
     <link rel="stylesheet" href="css/css-nav.css">
+		<link rel="stylesheet" href="css/css-infowindow.css">
     <link href="https://fonts.googleapis.com/css?family=Averia+Sans+Libre" rel="stylesheet">
 	
 </head>

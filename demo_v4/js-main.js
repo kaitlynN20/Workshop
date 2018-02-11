@@ -9,23 +9,172 @@ var i;
 
 	//DATA OF HOTSPOT LOCATIONS
 	var locations = [
-		['FILLMORE', 39.9658, -75.1347, 4],
-		['WORLD CAFE LIVE', 39.9521, -75.1851, 5],
-		['ELECTRIC FACTORY', 39.9594, -75.1496, 3],
-		['TLA', 39.9413, -75.1487, 2],
-		['UNION TRANSFER', 39.9614, -75.1553, 1],
-		['URBN ANNEX', 39.957119, -75.192836],
-		['URBN CENTER', 39.956492, -75.19283, 1]
+		['FILLMORE', 39.9658, -75.1347, 'bleachers'],
+		['WORLD CAFE LIVE', 39.9521, -75.1851, 'cupcakke'],
+		['ELECTRIC FACTORY', 39.9594, -75.1496, 'catfish'],
+		['TLA', 39.9413, -75.1487, 'palisades'],
+		['UNION TRANSFER', 39.9614, -75.1553, 'bishop briggs'],
+		['URBN ANNEX', 39.957119, -75.192836, 'glenn muschio'],
+		['URBN CENTER', 39.956492, -75.19283, 'troy binamore']
 	];
 
 //creates map
 //is called when page loads
 function initMap() {
+
+
+	//MAP STYLES
+	var styledMapType = new google.maps.StyledMapType(
+		[//mainbgcolor
+		  {elementType: 'geometry', stylers: [{color: '#e4e7e7'}]},
+		  //maintext color
+		  {elementType: 'labels.text.fill', stylers: [{color: '#381345'}]},
+		  //main text stroke
+		  {elementType: 'labels.text.stroke', stylers: [{color: '#f5f1e6'}]},
+		  {
+			featureType: 'administrative',
+			elementType: 'geometry.stroke',
+			//dashes
+			stylers: [{color: '#ffffff'}]
+		  },
+		  {
+			featureType: 'administrative.land_parcel',
+			elementType: 'geometry.stroke',
+			//irrelev
+			stylers: [{color: '#dcd2be'}]
+		  },
+		  {
+			featureType: 'administrative.land_parcel',
+			elementType: 'labels.text.fill',
+			stylers: [{color: '#ae9e90'}]
+		  },
+		  {
+			featureType: 'landscape.natural',
+			elementType: 'geometry',
+			//big grassy areas (light blue)
+			stylers: [{color: '#aed9df'}]
+		  },
+		  {
+			featureType: 'poi',
+			elementType: 'geometry',
+			//points of interest (drexel, penn etc)
+			stylers: [{color: '#7985A3'}]
+		  },
+		  {
+			featureType: 'poi',
+			elementType: 'labels.text.fill',
+			//poi text
+			stylers: [{color: '#705379'}]
+		  },
+		  {
+			featureType: 'poi.park',
+			elementType: 'geometry.fill',
+			//parks (lighter purple)
+			stylers: [{color: '#8F99B1'}]
+		  },
+		  {
+			featureType: 'poi.park',
+			elementType: 'labels.text.fill',
+			//park text color
+			stylers: [{color: '#447530'}]
+		  },
+		  {
+			featureType: 'road',
+			elementType: 'geometry',
+			//little roads (lighter than bg color grey)
+			stylers: [{color: '#F0F2F2'}]
+		  },
+		  {
+			featureType: 'road.arterial',
+			elementType: 'geometry',
+			//bigger road colors (white)
+			stylers: [{color: '#fdfcf8'}]
+		  },
+		  {
+			featureType: 'road.highway',
+			elementType: 'geometry',
+			//broad
+			stylers: [{color: '#EF6197'}]
+		  },
+		  {
+			featureType: 'road.highway',
+			//broad stroke
+			elementType: 'geometry.stroke',
+			stylers: [{color: '#F7BED4'}]
+		  },
+		  {
+			featureType: 'road.highway.controlled_access',
+			elementType: 'geometry',
+			//676, big bois
+			stylers: [{color: '#F380AC'}]
+		  },
+		  {
+			featureType: 'road.highway.controlled_access',
+			elementType: 'geometry.stroke',
+			//676 stroke
+			stylers: [{color: '#EF6197'}]
+		  },
+		  {
+			featureType: 'road.local',
+			elementType: 'labels.text.fill',
+			//little street name fills
+			stylers: [{color: '#9B889D'}]
+		  },
+		  {
+			featureType: 'transit.line',
+			elementType: 'geometry',
+			//trains, bus lines such
+			stylers: [{color: '#C0C7C7'}]
+		  },
+		  {
+			featureType: 'transit.line',
+			elementType: 'labels.text.fill',
+			//text color
+			stylers: [{color: '#89778F'}]
+		  },
+		  {
+			featureType: 'transit.line',
+			elementType: 'labels.text.stroke',
+			//text stroke , didn't work??
+			stylers: [{color: '#ffffff'}]
+		  },
+		  {
+			featureType: 'transit.station',
+			elementType: 'geometry',
+			//airport ( light purple)
+			stylers: [{color: '#B7BCCA'}]
+		  },
+		  {
+			featureType: 'water',
+			elementType: 'geometry.fill',
+			//water
+			stylers: [{color: '#81B6BA'}]
+		  },
+		  {
+			featureType: 'water',
+			elementType: 'labels.text.fill',
+			//water text
+			stylers: [{color: '#ffffff'}]
+		  }
+		],
+		{name: 'Styled Map'});
+
+
+
 	//INITIALIZE MAP
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 39.952583, lng: -75.165222},
-          zoom: 12
-        });
+		  zoom: 12,
+		  mapTypeControlOptions: {
+            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+                    'styled_map']
+          }
+		});
+		
+	//Associate the styled map with the MapTypeId and set it to display.
+        map.mapTypes.set('styled_map', styledMapType);
+        map.setMapTypeId('styled_map');
+
 	    infoWindow = new google.maps.InfoWindow;
 	//FIND USERS LOCATION	
 		if (navigator.geolocation) {
@@ -51,9 +200,22 @@ function initMap() {
 			for (i = 0; i < locations.length; i++) {  
 				marker = new google.maps.Marker({
 				position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-				icon: {url:'img/hotspot.png', scaledSize: new google.maps.Size(47, 50)},
+				icon: {url:'img/hotspot.png', scaledSize: new google.maps.Size(40, 52)},
 				map: map
 				});
+	
+	//VENUE INFORMATION - ARTIST NAME 			
+			var add = locations[i][3]
+			var content = "Artist: " + add     
+				
+			var infowindow = new google.maps.InfoWindow()
+
+			google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+				return function() {
+				   infowindow.setContent(content);
+				   infowindow.open(map,marker);
+				};
+			})(marker,content,infowindow)); 
 		  
 	// ADD CIRCLE OVERLAY and bind to marker
 		  var circle = new google.maps.Circle({
@@ -117,85 +279,6 @@ function initMap() {
 	  
       }
 
-//end of map creating and location
-
-//Function to convert hotspot and drop marker
-//takes user inputed adress and converts it
-//drops a marker down at that point
-
-// function makeHotspot() {
-// 	console.log('makeHotspot called');
-// 	var position = "";
-	
-// 	userAddress = document.getElementById('address').value;
-// 	console.log(userAddress);
-	
-// 	geocoder = new google.maps.Geocoder();
-	
-// 	geocoder.geocode( { 'address': userAddress}, 
-// 	function(results, status) {
-      
-// 		if (status == 'OK') {
-        
-// 		map.setCenter(results[0].geometry.location);
-	
-// 		var contentString = '<div id = "swapHotspot-container">'+'<div id="userProfile">'+'</div>'+'<div id="userBio">'+'</div>'+'<div id="swapSongs">'+'</div>'+'<div id="stickers">'+'</div>'+'</div>';
-			
-			
-// 		hotspotWindow = new google.maps.InfoWindow({
-// 			content: contentString
-// 		});
-
-// 			//puts the marker down at address
-// 			var marker = new google.maps.Marker({
-//             	map: map,
-// 				animation: google.maps.Animation.DROP,
-// 				position: results[0].geometry.location,
-// 				icon: {url:'img/hotspot.png', scaledSize: new google.maps.Size(47, 50)},			
-// 			});
-			 
-// 			// marker.setIcon('img/hotspot.png');
-			
-// 			marker.addListener('click', function(){
-// 				hotspotWindow.open(map, marker);
-// 			});
-			
-// 			console.log(results[0].geometry.location.lat());
-			
-			
-// 			userPos(function(id){       
-//                 var lat = id.coords.latitude;
-//                 var lng = id.coords.longitude;
-//                 var temp = .0008;
-
-                
-//                 var newLat = rangeChecker(lat, results[0].geometry.location.lat(), temp );
-//                 console.log(newLat);
-                
-//                 var newLng = rangeChecker(lng,results[0].geometry.location.lng(), temp );
-//                 console.log(newLng);
-                
-//                 //rangeChecker==bool
-//                 //
-                
-//                 if(newLat == true && newLng == true){
-//                     console.log("HELLO");
-                    
-//                 } else{
-//                     console.log("GOODBYE");
-//                 }
-//             });
-			
-// 		} else {
-//         	alert('Geocode was not successful for the following reason: ' + status);
-//       }
-//     });
-// }
-
-
-//end of entering hotspot
-
-//pulling user location data
 function userPos(callback) {
 	navigator.geolocation.getCurrentPosition(function(position) {
 		  console.log("FIRE");
