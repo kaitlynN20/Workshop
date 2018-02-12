@@ -2,6 +2,20 @@
   height: 100%;
 }
 
+/*
+.gm-style .gm-style-iw {
+    background-color: black !important;
+    top: -56px !important;
+    left: -70px !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 600px !important;
+    min-width: 600px !important;
+    display: block !important;
+    
+}    
+*/
+
 #map-container{
 	width: 600px;
 	height: 600px;
@@ -11,6 +25,16 @@
 	width: 100%;
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+
+#overlay{
+    background-color: black;
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    z-index: 99;
+    opacity: 0.5;
+
 }
 
 #swapHotspot-container{

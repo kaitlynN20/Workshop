@@ -91,7 +91,7 @@ function makeHotspot() {
 			marker.setIcon('../img/hotspot.png');
 			
 			marker.addListener('click', function(){
-				hotspotWindow.open(map, marker);
+				
 			});
 			
 			console.log(results[0].geometry.location.lat());
