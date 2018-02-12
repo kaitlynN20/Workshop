@@ -9,13 +9,13 @@ var i;
 
 	//DATA OF HOTSPOT LOCATIONS
 	var locations = [
-		['FILLMORE', 39.9658, -75.1347, 'bleachers'],
-		['WORLD CAFE LIVE', 39.9521, -75.1851, 'cupcakke'],
-		['ELECTRIC FACTORY', 39.9594, -75.1496, 'catfish'],
-		['TLA', 39.9413, -75.1487, 'palisades'],
-		['UNION TRANSFER', 39.9614, -75.1553, 'bishop briggs'],
-		['URBN ANNEX', 39.957119, -75.192836, 'glenn muschio'],
-		['URBN CENTER', 39.956492, -75.19283, 'troy binamore']
+		['FILLMORE', 39.9658, -75.1347, 'bleachers', '3/1/18', "https://www.ticketmaster.com/The-Fillmore-Philadelphia-tickets-Philadelphia/venue/17012"],
+		['WORLD CAFE LIVE', 39.9521, -75.1851, 'cupcakke', '3/6/18', "https://www.ticketmaster.com/The-Fillmore-Philadelphia-tickets-Philadelphia/venue/17012"],
+		['ELECTRIC FACTORY', 39.9594, -75.1496, 'catfish', '2/19/18', "https://www.ticketmaster.com/The-Fillmore-Philadelphia-tickets-Philadelphia/venue/17012"],
+		['TLA', 39.9413, -75.1487, 'palisades', '3/16/18', "https://www.ticketmaster.com/The-Fillmore-Philadelphia-tickets-Philadelphia/venue/17012"],
+		['UNION TRANSFER', 39.9614, -75.1553, 'bishop briggs', '4/3/18', "https://www.ticketmaster.com/The-Fillmore-Philadelphia-tickets-Philadelphia/venue/17012"],
+		['URBN ANNEX', 39.957119, -75.192836, 'glenn muschio', '3/7/18', "https://www.ticketmaster.com/The-Fillmore-Philadelphia-tickets-Philadelphia/venue/17012"],
+		['URBN CENTER', 39.956492, -75.19283, 'troy binamore', '4/8/18', "https://www.ticketmaster.com/The-Fillmore-Philadelphia-tickets-Philadelphia/venue/17012"]
 	];
 
 //creates map
@@ -105,14 +105,14 @@ function initMap() {
 		  {
 			featureType: 'road.highway.controlled_access',
 			elementType: 'geometry',
-			//676, big bois
-			stylers: [{color: '#F380AC'}]
+			//676, big bois #F380AC
+			stylers: [{color: '#E28AB1'}]
 		  },
 		  {
 			featureType: 'road.highway.controlled_access',
 			elementType: 'geometry.stroke',
-			//676 stroke
-			stylers: [{color: '#EF6197'}]
+			//676 stroke, #EF6197
+			stylers: [{color: 'E28AB1'}]
 		  },
 		  {
 			featureType: 'road.local',
@@ -207,7 +207,10 @@ function initMap() {
 	
 	//VENUE INFORMATION - ARTIST NAME 			
 			var add = locations[i][3]
-			var content = "Artist: " + add    
+			var date = locations[i][4]
+			var ticket = locations [i][5]
+			var dis = "distance"
+			var content = locations[i][0] + "<br> Artist: " + add + "<br>" + date + "<br>" +  "<a href='" + ticket + "'><button>Tickets</button></a>'"    
 			var prev_infowindow = false; 
 				
 			var infowindow = new google.maps.InfoWindow()
@@ -215,7 +218,7 @@ function initMap() {
 			google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
 				return function() { 
 				   //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-				   infowindow.setContent("<div style = 'width:100vw; min-height:70vh; background-color: rgba(255,255,255, .8);'>" + content + "</div>");
+				   infowindow.setContent("<div style = 'width:60vw; min-height:50vh; background-color: rgba(255,255,255, .8);'>" + content + "</div>");
 				   infowindow.open(map,marker);
 				   
 				  

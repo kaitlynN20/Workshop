@@ -80,14 +80,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fe5893', end
   left: 0;
   top: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 100 ;
   line-height: 60px;
   text-align: center;
   transform: translate3d(0, 0, 0);
   color: #eee;
   text-transform: uppercase;
   letter-spacing: .4em;
-  font-size: 28px;
+  font-size: 58px;
   font-weight: 100;
   text-shadow: 0 1px 0 rgba(black, .1);
   text-indent: .3em;
