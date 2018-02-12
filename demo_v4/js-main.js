@@ -5,7 +5,7 @@ var userAddress; //holds user adress entered in input field
 var hotspotWindow; //holds infowindow for hotspot 
 
 var srcImage = 'overlay_img.jpg';
-
+var overlay = document.getElementById('overlay'); 
 //creates map
 //is called when page loads
 function initMap() {
@@ -91,7 +91,9 @@ function makeHotspot() {
 			marker.setIcon('../img/hotspot.png');
 			
 			marker.addListener('click', function(){
-				
+                overlay.classList.remove("off");
+                overlay.classList.add("on");
+                
 			});
 			
 			console.log(results[0].geometry.location.lat());
@@ -147,4 +149,10 @@ function userPos(callback) {
 function rangeChecker(op, target, range){
     return op < target + range && op > target - range;
 }
-			 
+
+function closeOverlay(){
+    console.log("closeOverlay called");
+    
+    overlay.classList.remove("on");
+    overlay.classList.add("off");
+}

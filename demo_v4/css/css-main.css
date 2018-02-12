@@ -34,8 +34,16 @@
     height: 600px;
     z-index: 99;
     opacity: 0.5;
-
 }
+
+.off{
+    display: none;
+}
+
+.on{
+    display: inline-block;
+}
+
 
 #swapHotspot-container{
 	margin: 5px;
